@@ -22,3 +22,5 @@ const readAndAppend = (content, file) => {
 };
 
 module.exports = { readFromFile, writeToFile, readAndAppend };
+
+// This takes a json file and reads it, writes it and appends to it.

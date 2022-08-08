@@ -1,34 +1,35 @@
-const path = require('path');
-const fs = require('fs');
+const router = require('express').Router();
+const {
+    readFromFile,
+    readAndAppend,
+} = require('../utils');
 
-let uniqid = require('uniqid');
-
-module.exports = (app) => {
-
-  app.get('/api/notes', (req, res) => {        
-      res.sendFile(path.join(__dirname, '../db/db.json'));
-  });
+// GET request for notes
+router.get('/notes', (req, res) => {
+    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
+});
   
-  app.post('/api/notes', (req, res) => {
-      console.log('setting up new note');
-      let db = fs.readFileSync('db/db.json');
-      db = JSON.parse(db);
-
-      let newNote = {
-          title: req.body.title,  
-          text: req.body.text,
-          note_id: uniqid()
+// POST request to add a note
+  router.post('/notes', (req, res) => {
+  // Log that a POST request was received
+  // console.info(`${req.method} request received to add a note`);
+  
+  // Destructuring assignment for the items in req.body
+    const { title, text } = req.body;
+  
+    // If all the required properties are present
+    if (title && text) {
+      // Variable for the object we will save
+      const newNote = {
+        title,
+        text
       };
 
-      db.push(newNote);
-      fs.writeFileSync('db/db.json', JSON.stringify(db));
-      res.send(db);
-  });
+      readAndAppend(newNote, './db/db.json')
+      res.json('note added')
+    } else {
+        res.error("error adding new note")
+    }
+});
 
-  app.delete('/api/notes/:id', (req, res) => {
-      let db = JSON.parse(fs.readFileSync('db/db.json'));
-      let deleteNote = db.filter(item => item.id !== req.params.id);
-      fs.writeFileSync('db/db.json', JSON.stringify(deleteNote));
-      res.json(deleteNote);      
-  });
-}
+module.exports = router
