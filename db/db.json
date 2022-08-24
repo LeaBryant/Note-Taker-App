@@ -1,10 +1,9 @@
-[
+{
+  "notes": [
     {
-        "title":"Test Title",
-        "text":"Test text"
-    },
-    {
-        "title": "Hello",
-        "text": "World are you there?"
+      "title": "Hello",
+      "text": "World are you there?",
+      "id": "1"
     }
-]
+  ]
+}

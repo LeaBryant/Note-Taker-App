@@ -1,35 +1,45 @@
+const { notes } = require('../db/db.json');
+const { saveNewNote, findById, validateNote, deleteNote } = require('../db/index.js');
+
+// start instance of Router
 const router = require('express').Router();
-const {
-    readFromFile,
-    readAndAppend,
-} = require('../utils');
 
-// GET request for notes
+// // add unique ids to notes
+// const { default: ShortUniqueId } = require('short-unique-id');
+// const uid = new ShortUniqueId();
+
 router.get('/notes', (req, res) => {
-    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
-});
-  
-// POST request to add a note
-  router.post('/notes', (req, res) => {
-  // Log that a POST request was received
-  // console.info(`${req.method} request received to add a note`);
-  
-  // Destructuring assignment for the items in req.body
-    const { title, text } = req.body;
-  
-    // If all the required properties are present
-    if (title && text) {
-      // Variable for the object we will save
-      const newNote = {
-        title,
-        text
-      };
+    let results = notes;
 
-      readAndAppend(newNote, './db/db.json')
-      res.json('note added')
+    res.json(results);
+});
+
+router.get('/notes/:id', (req, res) => {
+    const result = findById(req.params.id, notes)
+    if (result) {
+        res.json(result);
+        console.log(result);
     } else {
-        res.error("error adding new note")
+        res.send(404);
     }
 });
 
-module.exports = router
+router.post('/notes', (req, res) => {
+    // set unique id for note and append
+    req.body.id = uid();
+    // validate data and deny if fields are empty
+    if(!validateNote(req.body)) {
+        res.status(404).send("Please complete each text field before saving.")
+    } else {
+        const note = saveNewNote(req.body, notes);
+        res.json(note);
+    }
+});
+
+router.delete('/notes/:id', (req, res) => {
+    console.log(req.params);
+    const result = deleteNote(req.params.id, notes);
+    res.json(result);
+});
+
+module.exports = router;
