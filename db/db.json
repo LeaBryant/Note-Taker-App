@@ -1,9 +1,18 @@
-{
-  "notes": [
+[
     {
-      "title": "Hello",
-      "text": "World are you there?",
-      "id": "1"
+        "title": "Hello",
+        "text": "World are you there?"
+    },
+    {
+        "title": "Hello",
+        "text": "World are you there?"
+    },
+    {
+        "title": "tebrsvdf",
+        "text": "ergafdc"
+    },
+    {
+        "title": "esrdtyu",
+        "text": "edrfygtuy"
     }
-  ]
-}
+]

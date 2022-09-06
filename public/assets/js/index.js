@@ -29,25 +29,25 @@ const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   });
 
 const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(note)
+    body: JSON.stringify(note),
   });
 
 const deleteNote = (id) =>
-  fetch('/api/notes/' + id, {
+  fetch(`/api/notes/${id}`, {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   });
 
 const renderActiveNote = () => {
@@ -79,10 +79,15 @@ const handleNoteSave = () => {
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {
-  // prevents the click listener for the list from being called when the button inside of it is clicked
+  // Prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
 
-  const noteId = JSON.parse(e.target.parentElement.getAttribute('data-note-content')).id;
+  const note = e.target;
+  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+
+  if (activeNote.id === noteId) {
+    activeNote = {};
+  }
 
   deleteNote(noteId).then(() => {
     getAndRenderNotes();
@@ -93,8 +98,7 @@ const handleNoteDelete = (e) => {
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
   e.preventDefault();
-  console.log(e.target.parentElement.getAttribute('data-note-content'));
-  activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note-content'));
+  activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
   renderActiveNote();
 };
 
@@ -127,6 +131,7 @@ const renderNoteList = async (notes) => {
     liEl.classList.add('list-group-item');
 
     const spanEl = document.createElement('span');
+    spanEl.classList.add('list-item-title');
     spanEl.innerText = text;
     spanEl.addEventListener('click', handleNoteView);
 
@@ -155,7 +160,7 @@ const renderNoteList = async (notes) => {
 
   jsonNotes.forEach((note) => {
     const li = createLi(note.title);
-    li.dataset.noteContent = JSON.stringify(note);
+    li.dataset.note = JSON.stringify(note);
 
     noteListItems.push(li);
   });

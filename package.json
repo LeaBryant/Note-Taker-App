@@ -1,25 +1,14 @@
 {
   "name": "note-taker",
   "version": "1.0.0",
+  "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
-    "uniqid": "^5.4.0"
-  },
-  "keywords": [],
-  "description": "",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LeaBryant/Note-Taker-App"
-  },
-  "bugs": {
-    "url": "https://github.com/LeaBryant/Note-Taker-App"
-  },
-  "homepage": "https://github.com/LeaBryant/Note-Taker-App"
+    "express": "^4.16.4"
+  }
 }
