@@ -1,38 +1,35 @@
-# Note Taker
-  ![license badge](https://img.shields.io/badge/license-MIT-yellowgreen.svg)
+# Note Taker App
+  ![license badge](https://img.shields.io/badge/license-MIT-red.svg)
 
 ## Description
-This application allows a user to write and save notes. Simple app that can help a user stay organized, and up to date on all thoughts and reminders at the tip of their fingers. This application uses Express.js on the backend where notes are stored in a JSON file. Routes are set up uniquely to allow the frontend and backend to communicate.
+Application called Note Taker that can be used to write and save notes. This app is to help any user stay organized,  and never forget another note by the use of this app. 
+
+This application uses Express.js to store the notes in a JSON file. Then uses routes to allow the backend app to communicate with the front.
 
 ## Table of Contents
-- [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
+- [Deployed](#deployed)
 - [Contributing](#contributing)
-- [Tests](#tests)
 - [Questions](#questions)
-- [Visuals](#visuals)
 
-## Installation
-
-No installation is required.
 
 ## Usage
 
-This application is ran through the browser, so any user can simply click on the deployed link and begin taking notes.
+Browser application that is deployed via link to begin taking notes.
 
 ## License
   
   This project uses the MIT license. 
   **If you have questions on the license please check the following site [choose a license](https://www.google.com)
 
+## Deployed
+
+Link to deployed application:
+
 ## Contributing
 
-Please reach out if you would like to contribute!
-
-## Tests
-
-No testing available for this application currently.
+Please reach out if you would like to contribute!😃
 
 ## Questions
 
@@ -40,6 +37,5 @@ Please feel free to explore my other projects on github: [Lea Bryant](https://ww
 
 If you have further questions you may send me an email at: ldbryant3220@gmail.com
 
-## Visuals
-
-Link to deployed application:
+## Designed by:
+Your's truly Lea Bryant 🦄
