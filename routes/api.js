@@ -11,24 +11,18 @@ router.get('/notes', (req, res) => {
   
 // POST request to add a note
   router.post('/notes', (req, res) => {
-  // Log that a POST request was received
-  // console.info(`${req.method} request received to add a note`);
-  
-  // Destructuring assignment for the items in req.body
     const { title, text } = req.body;
-  
-    // If all the required properties are present
     if (title && text) {
-      // Variable for the object we will save
+// Object that will be saved
       const newNote = {
         title,
         text
       };
 
       readAndAppend(newNote, './db/db.json')
-      res.json('note added')
+      res.json('✅')
     } else {
-        res.error("error adding new note")
+        res.error("❌")
     }
 });
 
