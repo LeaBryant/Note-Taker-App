@@ -25,7 +25,7 @@ Browser application that is deployed via link to begin taking notes.
 
 ## Deployed
 
-Link to deployed application:
+Link to deployed application: https://mysterious-taiga-64969.herokuapp.com/ 
 
 ## Contributing
 
